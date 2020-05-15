@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+
+    <title>Gestao de convidados!</title>
+  </head>
+  <body>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h1 class="display-4">Sistema de Gestao de Convidados</h1>
+			<p class="lead">Este é um sistema de Gestao de Convidado de uma festa.</p>
+			<p class="lead">Foi desenvolvido em java web com spring.</p>
+			<div class="row">
+				<div class="col">
+				<div data-spy="scroll" data-target="#list-example" data-offset="0"
+				class="scrollspy-example">
+				<p id="lead">Spring MVC</p>
+				<p id="lead">Spring Boot</p>
+				
+			</div>
+				</div>
+				<div class="col">
+				<div data-spy="scroll" data-target="#list-example" data-offset="0"
+				class="scrollspy-example">
+				
+				<p id="lead">Thymeleaf</p>
+				<p id="lead">Bootstrap 4</p>
+			</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="container">
+
+		
+
+		<form method="POST" th:action="@{/convidados}" th:object="${convidado}" >
+			<div class="row">
+				<div class="col">
+					<input type="text" class="form-control" placeholder="Nome completo" th:field="*{nome}" required="required"/>
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" placeholder="Numero de acompanhados" th:field="*{qant}" required="required" />
+				</div>
+				<div class="col">
+					<input type="submit" class="btn btn-outline-primary " value="Registrar" />
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="container mt-5" >
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nome do Convidado</th>
+					<th scope="col">Numeros de Acompanhados</th>
+					<th scope="col">Action</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="conv : ${convidados}">
+					<th scope="row" th:text="${cont}*${conv.id}" ></th>
+					<td th:text="${conv.nome}"></td>
+					<td th:text="${conv.qant}" ></td>
+					
+					<td>
+					
+				
+						
+						<a th:href="|@{/convidados/}${conv.id}|" class="btn btn-danger btn-sm" >Apagar</a>
+					
+					
+					</td>
+					
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script th:href="@{/webjars/jquery/3.4.0/jquery.min.js} "></script>
+	<script th:href="@{/webjars/bootstrap/4.3.1/bootstrap.min.js} "></script>
+    </body>
+</html>
